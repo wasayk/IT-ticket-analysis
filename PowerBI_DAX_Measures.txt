@@ -1,0 +1,41 @@
+
+-- Total Tickets
+Total Tickets = COUNT('tickets'[Ticket_ID])
+
+-- Average Resolution Time
+Average Resolution Time (hrs) = AVERAGE('tickets'[Resolution_Time_hours])
+
+-- Cumulative Ticket Volume
+Cumulative Tickets = 
+CALCULATE(
+    [Total Tickets],
+    FILTER(
+        ALLSELECTED('tickets'),
+        'tickets'[Opened_Date] <= MAX('tickets'[Opened_Date])
+    )
+)
+
+-- Resolved Under 1 Hour
+Resolved Under 1 Hour % = 
+DIVIDE(
+    COUNTROWS(FILTER('tickets', 'tickets'[Resolution_Time_hours] <= 1)),
+    [Total Tickets])
+
+-- Resolved Under 4 Hours
+Resolved Under 4 Hours % = 
+DIVIDE(
+    COUNTROWS(FILTER('tickets', 'tickets'[Resolution_Time_hours] <= 4)),
+    [Total Tickets])
+
+-- Resolved Under 24 Hours
+Resolved Under 24 Hours % = 
+DIVIDE(
+    COUNTROWS(FILTER('tickets', 'tickets'[Resolution_Time_hours] <= 24)),
+    [Total Tickets]
+)
+
+-- Day of Week
+Day of Week = FORMAT('tickets'[Opened_Date], "dddd")
+
+-- Month (for trend charts)
+Month = FORMAT('tickets'[Opened_Date], "yyyy-MM")
