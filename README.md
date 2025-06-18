@@ -33,6 +33,15 @@ Power BI (Interactive Dashboard)
 - Destination for cleaned IT ticket data
 - Used as Power BI data source
 
+- ## 🧾 SQL Queries & Insights
+
+Before dashboarding, raw insights were explored via SQL:
+
+- [x] Tickets per Technician
+- [x] Average Resolution Time
+- [x] Ticket Volume by Date
+- [x] Issue Type Breakdown
+
 ### 🟨 Power BI
 - Dashboards built on cloud SQL source
 - Includes custom DAX KPIs, slicers, trend analysis, and visuals
